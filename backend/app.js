@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const usersRoutes = require('./routes/users');
-const booksRoutes = require('./routes/books');
+const usersRoutes = require('./routes/user');
+const booksRoutes = require('./routes/book');
 
 mongoose.connect('mongodb+srv://8JwazrZY43gNbJZL:8JwazrZY43gNbJZL@cluster0.zjchg4i.mongodb.net/?retryWrites=true&w=majority',
     { useNewUrlParser: true,
