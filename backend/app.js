@@ -3,10 +3,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const usersRoutes = require('./routes/user');
 const booksRoutes = require('./routes/book');
 
-mongoose.connect('mongodb+srv://8JwazrZY43gNbJZL:8JwazrZY43gNbJZL@cluster0.zjchg4i.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://' + process.env.MONGODB_USER + ':' + process.env.MONGODB_PASSWORD + '@cluster0.zjchg4i.mongodb.net/?retryWrites=true&w=majority',
     { useNewUrlParser: true,
     useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
