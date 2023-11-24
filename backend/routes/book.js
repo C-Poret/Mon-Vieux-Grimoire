@@ -9,9 +9,9 @@ const bookCtrl = require('../controllers/book');
 
 router.get('/', bookCtrl.getAllBook);
 
-router.get('/:id', bookCtrl.getOneBook);
-
 router.get('/bestrating', bookCtrl.bestRating);
+
+router.get('/:id', bookCtrl.getOneBook);
 
 router.post('/', auth, multer, sharp, bookCtrl.createBook);
 

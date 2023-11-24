@@ -16,7 +16,7 @@ exports.getOneBook = (req, res, next) => {
 exports.bestRating = (req, res, next) => {
     Book.find().sort({ averageRating: -1 }).limit(3)
         .then(books => res.status(200).json(books))
-        .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(400).json({ error }));
 };
 
 exports.createBook = (req, res, next) => {
@@ -88,9 +88,10 @@ exports.rateBook = (req, res, next) => {
             }
             book.ratings.push({ userId, grade });
             const averageRating = book.ratings.reduce((accumulator, currentValue) => accumulator + currentValue.grade, 0) / book.ratings.length;
-            book.averageRating = averageRating;
+            const averageRatingRound = Math.round(averageRating * 100) / 100;
+            book.averageRating = averageRatingRound;
             book.save();
+            res.status(200).json(book)
         })
-    .then(books => res.status(200).json(books))
     .catch(error => res.status(500).json({ error }));
 };
